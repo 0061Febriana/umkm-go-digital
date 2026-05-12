@@ -30,8 +30,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# auto-push log
-auto-push.log
+# eslint errors (auto-generated, tidak perlu di-commit)
+eslint-errors.json
+eslint-errors.txt
 
 # env files (can opt-in for committing if needed)
 .env*
