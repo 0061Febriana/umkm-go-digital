@@ -10,6 +10,9 @@
         "reveal": "always",
         "panel": "new",
         "close": false
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
       }
     }
   ]
