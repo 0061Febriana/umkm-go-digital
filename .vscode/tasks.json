@@ -2,13 +2,14 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Git Auto Commit & Push",
+      "label": "[Run] Auto Push",
       "type": "shell",
-      "command": "git add . && git commit -m \"auto: perubahan pada ${workspaceFolderBasename}\" && git push",
+      "command": "powershell -ExecutionPolicy Bypass -File ${workspaceFolder}/auto-push.ps1",
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",
-        "panel": "shared"
+        "panel": "new",
+        "close": false
       }
     }
   ]
