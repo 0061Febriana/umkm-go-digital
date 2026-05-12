@@ -1,0 +1,242 @@
+.adminWrapper {
+  display: flex;
+  min-height: 100vh;
+  background-color: #F8F9FA; /* Sedikit beda dari cream public website */
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background: linear-gradient(180deg, var(--brown-dark) 0%, var(--brown-darker) 100%);
+  color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 50;
+}
+
+.sidebarHeader {
+  padding: 32px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.adminLogo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.4;
+  display: block;
+}
+
+.sidebarNav {
+  padding: 24px 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.navItem, .navItemActive {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.navItem {
+  color: rgba(245, 240, 230, 0.7);
+}
+
+.navItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--white);
+}
+
+.navItemActive {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--white);
+  font-weight: 600;
+}
+
+/* Accordion */
+.accordion {
+  display: flex;
+  flex-direction: column;
+}
+
+.accordionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: rgba(245, 240, 230, 0.7);
+  width: 100%;
+}
+
+.accordionHeader:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--white);
+}
+
+.accordionHeaderActive {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--white);
+  font-weight: 600;
+}
+
+.accordionHeader span {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.accordionIcon {
+  transition: transform 0.3s ease;
+  font-size: 0.8rem;
+}
+
+.accordionIconOpen {
+  transform: rotate(180deg);
+}
+
+.accordionContent {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  margin-top: 4px;
+  gap: 4px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+}
+
+.accordionContentOpen {
+  max-height: 300px;
+}
+
+.navSubItem {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px 10px 24px;
+  text-decoration: none;
+  color: rgba(245, 240, 230, 0.7);
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.navSubItem::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: rgba(245, 240, 230, 0.3);
+  transition: all 0.2s ease;
+}
+
+.navSubItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--white);
+}
+
+.navSubItem:hover::before {
+  background-color: var(--white);
+}
+
+.navSubItemActive {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px 10px 24px;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  position: relative;
+}
+
+.navSubItemActive::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--white);
+}
+
+.sidebarFooter {
+  padding: 24px 16px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.btnLogout {
+  width: 100%;
+  padding: 12px;
+  background: rgba(244, 67, 54, 0.15);
+  color: #FFCDD2;
+  border: 1px solid rgba(244, 67, 54, 0.3);
+  border-radius: var(--radius-sm);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnLogout:hover {
+  background: rgba(244, 67, 54, 0.3);
+  color: var(--white);
+}
+
+/* Main Content */
+.mainContent {
+  flex: 1;
+  margin-left: 260px;
+  padding: 48px;
+  max-width: 1200px;
+}
+
+@media (max-width: 768px) {
+  .adminWrapper { flex-direction: column; }
+  .sidebar {
+    width: 100%;
+    position: relative;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+  }
+  .sidebarHeader { padding: 0; border: none; }
+  .adminLogo { font-size: 1rem; br { display: none; } }
+  .sidebarNav { display: none; }
+  .sidebarFooter { padding: 0; border: none; }
+  .btnLogout { padding: 8px 16px; font-size: 0.8rem; }
+  .mainContent { margin-left: 0; padding: 24px; }
+}

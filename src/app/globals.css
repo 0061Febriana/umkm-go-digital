@@ -1,0 +1,339 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap');
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  --cream: #F5F0E6;
+  --cream-dark: #EDE6D6;
+  --beige: #EADBC8;
+  --beige-dark: #D4C4A8;
+  --brown-light: #C4956A;
+  --brown: #8B5E3C;
+  --brown-dark: #5C3D2E;
+  --brown-darker: #3D2618;
+  --white: #FFFFFF;
+  --text-dark: #2C1A0E;
+  --text-mid: #5C3D2E;
+  --text-soft: #8B7355;
+  --text-muted: #A89880;
+  --green: #4CAF50;
+  --green-light: #E8F5E9;
+  --yellow: #FF9800;
+  --yellow-light: #FFF3E0;
+  --red: #F44336;
+  --red-light: #FFEBEE;
+  --blue: #2196F3;
+  --blue-light: #E3F2FD;
+  --shadow-sm: 0 2px 8px rgba(92, 61, 46, 0.08);
+  --shadow-md: 0 4px 20px rgba(92, 61, 46, 0.12);
+  --shadow-lg: 0 8px 40px rgba(92, 61, 46, 0.16);
+  --shadow-xl: 0 16px 64px rgba(92, 61, 46, 0.2);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--cream);
+  color: var(--text-dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  line-height: 1.3;
+  color: var(--brown-dark);
+}
+
+p { color: var(--text-soft); }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb {
+  background: var(--beige-dark);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--brown-light); }
+
+/* ===== UTILITY CLASSES ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 80px 0;
+}
+
+.section-sm {
+  padding: 48px 0;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-md);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--brown) 0%, var(--brown-dark) 100%);
+  color: var(--white);
+  box-shadow: 0 4px 16px rgba(139, 94, 60, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(139, 94, 60, 0.45);
+  background: linear-gradient(135deg, var(--brown-light) 0%, var(--brown) 100%);
+}
+
+.btn-primary:active { transform: translateY(0); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--brown);
+  border: 2px solid var(--brown);
+}
+
+.btn-outline:hover {
+  background: var(--brown);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background: rgba(139, 94, 60, 0.08);
+  color: var(--brown-dark);
+}
+
+.btn-ghost:hover {
+  background: rgba(139, 94, 60, 0.15);
+  transform: translateY(-1px);
+}
+
+.btn-lg {
+  padding: 18px 36px;
+  font-size: 1.05rem;
+  border-radius: var(--radius-lg);
+}
+
+.btn-full { width: 100%; justify-content: center; }
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(234, 219, 200, 0.5);
+  transition: var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.card-beige {
+  background: var(--cream);
+  border: 1px solid var(--beige);
+}
+
+/* ===== FORM INPUTS ===== */
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-mid);
+}
+
+.input-field {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid var(--beige);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  transition: var(--transition);
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: var(--brown);
+  box-shadow: 0 0 0 4px rgba(139, 94, 60, 0.1);
+}
+
+.input-field::placeholder { color: var(--text-muted); }
+
+.input-prefix {
+  position: relative;
+}
+
+.input-prefix span {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-soft);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.input-prefix .input-field {
+  padding-left: 48px;
+}
+
+/* ===== BADGE ===== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.badge-brown {
+  background: rgba(139, 94, 60, 0.1);
+  color: var(--brown);
+}
+
+.badge-green {
+  background: var(--green-light);
+  color: #2E7D32;
+}
+
+.badge-yellow {
+  background: var(--yellow-light);
+  color: #E65100;
+}
+
+.badge-red {
+  background: var(--red-light);
+  color: #C62828;
+}
+
+.badge-blue {
+  background: var(--blue-light);
+  color: #1565C0;
+}
+
+/* ===== DIVIDER ===== */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--beige), transparent);
+  margin: 32px 0;
+}
+
+/* ===== SECTION HEADER ===== */
+.section-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.section-header .badge {
+  margin-bottom: 16px;
+}
+
+.section-header h2 {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  margin-bottom: 16px;
+}
+
+.section-header p {
+  font-size: 1.05rem;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ===== GRID ===== */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-fadeInUp { animation: fadeInUp 0.6s ease forwards; }
+.animate-fadeIn { animation: fadeIn 0.4s ease forwards; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .container { padding: 0 16px; }
+  .section { padding: 56px 0; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .card { padding: 24px; }
+}

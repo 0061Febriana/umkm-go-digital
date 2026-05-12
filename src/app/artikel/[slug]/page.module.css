@@ -1,0 +1,142 @@
+.articlePage {
+  padding: 120px 0 80px;
+  background-color: var(--white);
+  min-height: 100vh;
+}
+
+.backNav {
+  margin-bottom: 32px;
+}
+
+.backButton {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--text-soft);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.2s;
+}
+
+.backButton:hover {
+  color: var(--brown);
+}
+
+.articleHeader {
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--beige);
+  padding-bottom: 32px;
+}
+
+.categoryBadge {
+  display: inline-block;
+  padding: 6px 14px;
+  background: var(--cream);
+  color: var(--brown);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  color: var(--brown-darker);
+  line-height: 1.2;
+  margin-bottom: 16px;
+  font-weight: 800;
+}
+
+.meta {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.excerpt {
+  background: var(--cream-light);
+  border-left: 4px solid var(--brown-light);
+  padding: 24px;
+  margin-bottom: 48px;
+  border-radius: 0 12px 12px 0;
+}
+
+.excerpt p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--brown-dark);
+  font-style: italic;
+  margin: 0;
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.articleBody {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-dark);
+}
+
+.articleFooter {
+  margin-top: 80px;
+  padding-top: 40px;
+  border-top: 1px solid var(--beige);
+}
+
+.shareBox {
+  background: linear-gradient(135deg, var(--brown-darker) 0%, var(--brown) 100%);
+  padding: 40px;
+  border-radius: 24px;
+  color: white;
+  text-align: center;
+}
+
+.shareBox p {
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+  opacity: 0.9;
+}
+
+.footerActions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.footerActions :global(.btn-outline) {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: white;
+}
+
+.footerActions :global(.btn-outline):hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.loading, .notFound {
+  padding: 160px 0;
+  text-align: center;
+}
+
+.notFound h1 {
+  font-size: 2.5rem;
+  color: var(--brown-darker);
+  margin-bottom: 16px;
+}
+
+.notFound p {
+  margin-bottom: 32px;
+  color: var(--text-soft);
+}
+
+@media (max-width: 768px) {
+  .articlePage { padding: 100px 0 60px; }
+  .title { font-size: 2.2rem; }
+  .excerpt { padding: 20px; }
+  .footerActions { flex-direction: column; }
+}

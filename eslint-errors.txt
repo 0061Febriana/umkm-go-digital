@@ -1,0 +1,68 @@
+﻿
+D:\UMKMGoDigital\umkm-go-digital\src\app\admin-dashboard\layout.tsx
+  22:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+D:\UMKMGoDigital\umkm-go-digital\src\app\admin-dashboard\layout.tsx:22:7
+  20 |       router.push("/admin-login-umkm");
+  21 |     } else {
+> 22 |       setIsAuthenticated(true);
+     |       ^^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  23 |     }
+  24 |   }, [router]);
+  25 |  react-hooks/set-state-in-effect
+
+D:\UMKMGoDigital\umkm-go-digital\src\app\admin-dashboard\page.tsx
+   46:5   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+D:\UMKMGoDigital\umkm-go-digital\src\app\admin-dashboard\page.tsx:46:5
+  44 |
+  45 |   useEffect(() => {
+> 46 |     fetchArticles();
+     |     ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  47 |   }, []);
+  48 |
+  49 |   const handleOpenModal = (article?: Article) => {  react-hooks/set-state-in-effect
+  201:91  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @typescript-eslint/no-explicit-any
+
+D:\UMKMGoDigital\umkm-go-digital\src\app\admin-login-umkm\page.tsx
+  45:14  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\UMKMGoDigital\umkm-go-digital\src\app\admin-reset-password\page.tsx
+  70:14  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\UMKMGoDigital\umkm-go-digital\src\app\simulasi-harga\page.tsx
+  222:80  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  222:94  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+D:\UMKMGoDigital\umkm-go-digital\src\components\Navbar.tsx
+  28:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+D:\UMKMGoDigital\umkm-go-digital\src\components\Navbar.tsx:28:5
+  26 |
+  27 |   useEffect(() => {
+> 28 |     setMenuOpen(false);
+     |     ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  29 |   }, [pathname]);
+  30 |
+  31 |   if (pathname?.startsWith("/admin")) return null;  react-hooks/set-state-in-effect
+
+Ô£û 8 problems (6 errors, 2 warnings)
+

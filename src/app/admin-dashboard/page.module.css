@@ -1,0 +1,210 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  animation: fadeIn 0.4s ease;
+}
+
+.header h1 {
+  font-size: 1.8rem;
+  color: var(--brown-darker);
+  margin-bottom: 4px;
+}
+
+.header p {
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+
+.btnAdd {
+  background: var(--brown);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(139, 94, 60, 0.2);
+}
+
+.btnAdd:hover {
+  background: var(--brown-dark);
+  transform: translateY(-2px);
+}
+
+/* Table */
+.tableCard {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--beige);
+  overflow: hidden;
+  animation: fadeInUp 0.5s ease;
+}
+
+.tableResponsive {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  padding: 16px 24px;
+  text-align: left;
+  border-bottom: 1px solid var(--cream-dark);
+}
+
+.table th {
+  background: var(--cream);
+  color: var(--text-mid);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.table td {
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  vertical-align: middle;
+}
+
+.table tr:last-child td { border-bottom: none; }
+.table tr:hover td { background: var(--cream); }
+
+.textRight { text-align: right !important; }
+.emptyState { text-align: center !important; color: var(--text-muted) !important; padding: 40px !important; }
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.badgeBlue { background: #E3F2FD; color: #1565C0; }
+.badgeYellow { background: #FFF3E0; color: #E65100; }
+.badgeGreen { background: #E8F5E9; color: #2E7D32; }
+
+/* Action Buttons */
+.btnActionEdit, .btnActionDelete {
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.btnActionEdit { color: var(--blue); margin-right: 8px; }
+.btnActionEdit:hover { background: var(--blue-light); }
+
+.btnActionDelete { color: var(--red); }
+.btnActionDelete:hover { background: var(--red-light); }
+
+/* Modal */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 24px;
+}
+
+.modal {
+  background: white;
+  width: 100%;
+  max-width: 600px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  animation: fadeInUp 0.3s ease;
+}
+
+.modalHeader {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--beige);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalHeader h2 { font-size: 1.25rem; color: var(--brown-dark); }
+
+.btnClose {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.modalBody { padding: 24px; }
+
+.formGroup {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroup label { font-size: 0.85rem; font-weight: 600; color: var(--text-mid); }
+.formGroup input, .formGroup select, .formGroup textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--beige-dark);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.formGroup input:focus, .formGroup select:focus, .formGroup textarea:focus {
+  border-color: var(--brown);
+}
+
+.modalFooter {
+  padding-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.btnCancel {
+  padding: 10px 16px;
+  background: white;
+  border: 1px solid var(--beige-dark);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  color: var(--text-mid);
+  cursor: pointer;
+}
+
+.btnSave {
+  padding: 10px 20px;
+  background: var(--brown);
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
