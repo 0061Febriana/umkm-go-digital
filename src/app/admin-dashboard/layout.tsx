@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { supabase } from "@/lib/supabaseClient";
 import styles from "./adminLayout.module.css";
 import Toast from "@/components/Toast";
 
@@ -24,12 +23,15 @@ export default function AdminLayout({
 
   useEffect(() => {
     // Sederhana pengecekan autentikasi (karena tidak pakai DB)
-    const isLogged = localStorage.getItem("umkm_admin_logged");
-    if (isLogged !== "true") {
-      router.push("/admin-login-umkm");
-    } else {
-      setIsAuthenticated(true);
-    }
+    const checkAuth = () => {
+      const isLogged = localStorage.getItem("umkm_admin_logged");
+      if (isLogged !== "true") {
+        router.push("/admin-login-umkm");
+      } else {
+        setIsAuthenticated(true);
+      }
+    };
+    checkAuth();
   }, [router]);
 
   const handleLogout = () => {

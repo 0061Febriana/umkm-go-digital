@@ -42,7 +42,7 @@ export default function AdminLoginPage() {
       // Jika berhasil
       localStorage.setItem("umkm_admin_logged", "true");
       router.push("/admin-dashboard");
-    } catch (err) {
+    } catch {
       setError("Terjadi kesalahan sistem. Coba lagi.");
       setLoading(false);
     }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { hitungProfit, formatRupiah, type HasilKalkulasi } from "@/utils/kalkulasiProfit";
 import { productCategories } from "@/utils/categories-data";
 import { supabase } from "@/lib/supabaseClient";
@@ -15,7 +15,7 @@ export default function SimulasiHargaPage() {
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
   const [hasil, setHasil] = useState<HasilKalkulasi | null>(null);
-  const [marketData, setMarketData] = useState<any[]>([]);
+  const [marketData, setMarketData] = useState<{marketplace: string; harga: number; nama_produk: string; link_produk: string}[]>([]);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -40,14 +40,53 @@ export default function SimulasiHargaPage() {
 
     setLoading(true);
     
-    // Fetch cached marketplace data
-    const { data: marketResults } = await supabase
+    // Fetch cached marketplace data (dengan fallback agar SELALU TAMPIL)
+    let { data: marketResults } = await supabase
       .from("marketplace_price_cache")
       .select("*")
       .eq("kategori", category)
       .eq("subkategori", subCategory);
 
-    setMarketData(marketResults || []);
+    // Fallback: Jika di database kosong, buat link pencarian dinamis sesuai kategori yang dipilih
+    if (!marketResults || marketResults.length === 0) {
+      const searchQuery = encodeURIComponent(`${category} ${subCategory}`.trim());
+      marketResults = [
+        {
+          nama_produk: `Hasil Pencarian: ${subCategory || category}`,
+          kategori: category,
+          subkategori: subCategory,
+          marketplace: "Shopee",
+          harga: Number(hargaJual) || 50000,
+          fee_marketplace: 0,
+          link_produk: `https://shopee.co.id/search?keyword=${searchQuery}`
+        },
+        {
+          nama_produk: `Hasil Pencarian: ${subCategory || category}`,
+          kategori: category,
+          subkategori: subCategory,
+          marketplace: "TikTok Shop",
+          harga: Number(hargaJual) || 50000,
+          fee_marketplace: 0,
+          link_produk: `https://www.tiktok.com/search?q=${searchQuery}`
+        }
+      ];
+
+      // Simpan otomatis fallback ini ke dalam database (agar masuk ke halaman admin)
+      supabase.from("marketplace_price_cache").insert(marketResults).then(({ error }) => {
+        if (error) {
+          console.error("Gagal auto-save data fallback:", error.message);
+        }
+      });
+    }
+
+    const filteredMarketData = [];
+    if (marketResults) {
+      const shopeeItem = marketResults.find(i => i.marketplace === "Shopee");
+      const tiktokItem = marketResults.find(i => i.marketplace === "TikTok Shop");
+      if (shopeeItem) filteredMarketData.push(shopeeItem);
+      if (tiktokItem) filteredMarketData.push(tiktokItem);
+    }
+    setMarketData(filteredMarketData);
 
     const result = hitungProfit(
       Number(hargaModal),
@@ -287,31 +326,35 @@ export default function SimulasiHargaPage() {
                   </div>
 
                   {/* Marketplace Comparison */}
-                  {marketData.length > 0 && (
-                    <div className={styles.marketComparison}>
-                      <h4>🏪 Perbandingan Harga Pasar ({subCategory})</h4>
-                      <div className={styles.marketGrid}>
-                        {marketData.map((item, idx) => (
-                          <div key={idx} className={styles.marketCard}>
-                            <div className={styles.marketHeader}>
-                              <span className={item.marketplace === 'Shopee' ? styles.badgeShopee : styles.badgeTikTok}>
-                                {item.marketplace}
-                              </span>
-                              <span className={styles.marketPrice}>{formatRupiah(item.harga)}</span>
-                            </div>
-                            <p className={styles.marketProduct}>{item.nama_produk}</p>
-                            {item.link_produk && item.link_produk !== "#" ? (
-                              <a href={item.link_produk} target="_blank" rel="noreferrer" className={styles.marketLink}>
-                                Lihat Produk ↗
-                              </a>
-                            ) : (
-                              <span className={styles.linkInvalid}>Produk tidak tersedia</span>
-                            )}
+                  <div className={styles.marketComparison}>
+                    <h4>📦 Produk Pembanding</h4>
+                    <div className={styles.marketGrid}>
+                      {marketData.length > 0 ? marketData.map((item, idx) => (
+                        <div key={idx} className={styles.marketCard}>
+                          <div className={styles.marketHeader}>
+                            <span className={item.marketplace === 'Shopee' ? styles.badgeShopee : styles.badgeTikTok}>
+                              {item.marketplace}:
+                            </span>
                           </div>
-                        ))}
-                      </div>
+                          <p className={styles.marketProduct} style={{ margin: "8px 0 4px 0", fontSize: "0.9rem", color: "#333", fontWeight: 500 }}>
+                            {item.nama_produk}
+                          </p>
+                          <span className={styles.marketPrice} style={{ display: "block", marginBottom: "12px", fontSize: "0.95rem" }}>
+                            {formatRupiah(item.harga)}
+                          </span>
+                          {item.link_produk && item.link_produk !== "#" ? (
+                            <a href={item.link_produk} target="_blank" rel="noreferrer" className={styles.marketLink}>
+                              {item.marketplace === 'Shopee' ? '[ Lihat Produk Shopee ]' : '[ Lihat Produk TikTok ]'}
+                            </a>
+                          ) : (
+                            <span className={styles.linkInvalid}>Produk tidak tersedia</span>
+                          )}
+                        </div>
+                      )) : (
+                        <p className={styles.linkInvalid}>Belum ada data pembanding di database.</p>
+                      )}
                     </div>
-                  )}
+                  </div>
 
                   {/* Margin Bar */}
                   <div className={styles.marginBar}>

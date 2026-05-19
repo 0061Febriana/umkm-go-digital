@@ -113,7 +113,7 @@ export default function AnalisaHargaAdminPage() {
       });
       const result = await res.json();
       return result;
-    } catch (err) {
+    } catch {
       return { valid: false, message: "Gagal validasi link" };
     }
   };
@@ -366,7 +366,7 @@ export default function AnalisaHargaAdminPage() {
                   <label>Marketplace</label>
                   <select
                     value={formData.marketplace}
-                    onChange={(e) => setFormData({ ...formData, marketplace: e.target.value as any })}
+                    onChange={(e) => setFormData({ ...formData, marketplace: e.target.value as "Shopee" | "TikTok Shop" })}
                   >
                     <option value="Shopee">Shopee</option>
                     <option value="TikTok Shop">TikTok Shop</option>

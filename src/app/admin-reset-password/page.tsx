@@ -67,7 +67,7 @@ export default function AdminResetPasswordPage() {
         router.push("/admin-login-umkm");
       }, 2000);
 
-    } catch (err) {
+    } catch {
       setError("Terjadi kesalahan sistem. Coba lagi.");
     } finally {
       setLoading(false);

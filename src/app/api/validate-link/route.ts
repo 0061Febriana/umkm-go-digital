@@ -42,11 +42,12 @@ export async function POST(request: Request) {
       } else {
         return NextResponse.json({ valid: false, status: response.status, message: "Link tidak dapat diakses (Status: " + response.status + ")" });
       }
-    } catch (fetchError: any) {
+    } catch (fetchError) {
       clearTimeout(timeoutId);
-      return NextResponse.json({ valid: false, message: "Gagal menghubungi server marketplace: " + fetchError.message });
+      const msg = fetchError instanceof Error ? fetchError.message : String(fetchError);
+      return NextResponse.json({ valid: false, message: "Gagal menghubungi server marketplace: " + msg });
     }
-  } catch (error: any) {
+  } catch {
     return NextResponse.json({ valid: false, message: "Internal Server Error" }, { status: 500 });
   }
 }
