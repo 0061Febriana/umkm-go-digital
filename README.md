@@ -1,5 +1,7 @@
 # UMKM Go Digital
 
+[![CI](https://github.com/0061Febriana/umkm-go-digital/actions/workflows/ci.yml/badge.svg)](https://github.com/0061Febriana/umkm-go-digital/actions/workflows/ci.yml)
+
 Platform edukasi dan pendampingan UMKM untuk bertransformasi ke era digital.
 
 ## Fitur Utama
