@@ -34,10 +34,10 @@ const features = [
 ];
 
 const stats = [
-  { value: "10K+", label: "UMKM Terbantu" },
-  { value: "50+", label: "Artikel Edukasi" },
-  { value: "4", label: "Fitur Unggulan" },
-  { value: "100%", label: "Gratis" },
+  { value: "All-in-One", label: "Satu Platform" },
+  { value: "Smart Pricing", label: "Hitung Harga" },
+  { value: "Market Insight", label: "Tips Marketplace" },
+  { value: "Free Access", label: "Akses Gratis" },
 ];
 
 export default function HomePage() {
