@@ -20,17 +20,36 @@ export default function KebijakanPage() {
 
   useEffect(() => {
     const fetchArticles = async () => {
-      const { data, error } = await supabase
-        .from("articles")
-        .select("*, categories!inner(slug)")
-        .eq("categories.slug", "kebijakan")
-        .eq("status", "published")
-        .order("created_at", { ascending: false });
+      try {
+        const { data: categoryData, error: catError } = await supabase
+          .from("categories")
+          .select("id")
+          .eq("slug", "kebijakan")
+          .single();
 
-      if (!error && data) {
-        setArticles(data);
+        if (catError || !categoryData) {
+          console.error("Error fetching category:", catError);
+          setLoading(false);
+          return;
+        }
+
+        const { data, error } = await supabase
+          .from("articles")
+          .select("*")
+          .eq("category_id", categoryData.id)
+          .eq("status", "published")
+          .order("created_at", { ascending: false });
+
+        if (!error && data) {
+          setArticles(data);
+        } else if (error) {
+          console.error("Error fetching articles:", error);
+        }
+      } catch (err) {
+        console.error("Unexpected error:", err);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
 
     fetchArticles();

@@ -25,17 +25,38 @@ export default function ArticleDetailPage({ params }: { params: Promise<{ slug: 
 
   useEffect(() => {
     const fetchArticle = async () => {
-      const { data, error } = await supabase
-        .from("articles")
-        .select("*, categories(name)")
-        .eq("slug", slug)
-        .eq("status", "published")
-        .single();
+      try {
+        const { data, error } = await supabase
+          .from("articles")
+          .select("*")
+          .eq("slug", slug)
+          .eq("status", "published")
+          .single();
 
-      if (!error && data) {
-        setArticle(data);
+        if (!error && data) {
+          let categoryName = "";
+          if (data.category_id) {
+            const { data: catData } = await supabase
+              .from("categories")
+              .select("name")
+              .eq("id", data.category_id)
+              .single();
+            if (catData) {
+              categoryName = catData.name;
+            }
+          }
+          setArticle({
+            ...data,
+            categories: { name: categoryName }
+          });
+        } else if (error) {
+          console.error("Error fetching article:", error);
+        }
+      } catch (err) {
+        console.error("Unexpected error:", err);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
 
     fetchArticle();
